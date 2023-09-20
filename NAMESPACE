@@ -1,0 +1,16 @@
+useDynLib(Euclimatch, .registration=TRUE)
+
+export(climatch_par)
+export(climatch_vec)
+export(climatch_sum)
+export(extract_clim_data)
+export(climatch_plot)
+
+import(RcppParallel)
+import(doParallel)
+importFrom(Rcpp, evalCpp)
+importFrom(foreach,"%:%")
+importFrom(foreach,"%dopar%")
+import(terra)
+
+exportPattern("^[[:alpha:]]+")

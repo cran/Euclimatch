@@ -1,0 +1,15 @@
+0421da6a8add05caf49813797c040386 *DESCRIPTION
+aae57ded56ad707a1ec62812f380b9c2 *NAMESPACE
+04c16cefa92374f72138bb606db6515e *R/RcppExports.R
+008105368156714d24c797878df51e62 *R/climatch_par.R
+b73e7fb7b328decce35b2a0ff729ba73 *R/climatch_plot.R
+f42072f2823c7163a9b3d4dbf48cf877 *R/climatch_sum.R
+cd59d0ebdac61a3c81b2dd860b3faad5 *R/extract_clim_data.R
+ceafed3431dc421a32c5d69322a9f00e *README.md
+5490281433dc3de0b9f67dca216091be *man/climatch_par.Rd
+174cba38698461eaf992a72a04781f8f *man/climatch_plot.Rd
+64db62abd60510be07ea2992d31946aa *man/climatch_sum.Rd
+78ea32848de4bfe048ffccf7f0e94687 *man/climatch_vec.Rd
+b6f2b87a0b24e13201c68946c71aaf2d *man/extract_clim_data.Rd
+e3437927182d292738fa4666f3dfdc48 *src/RcppExports.cpp
+c234da520aa538394aa85b8fef5a03f8 *src/climatch_vec.cpp
