@@ -52,14 +52,14 @@ for(i in 1:100){r1 <- rbind(r1, runif(60))}
 rclim1 <- terra::rast(as(r1, "matrix")) #Create the RasterLayer
 
 # Dummy lon lat mimicking species occurrence records
-species.occurr <- data.frame("lon" = 1:10, "lat" = 11:20)
+spec_occ <- data.frame("lon" = 1:10, "lat" = 11:20)
 
 # Create dummy polygons
-x.coor <- c(1, 5,  10, 8, 3)
-y.coor <- c(15, 20,  27, 30, 29)
-dummy_coordinates <- cbind(x.coor, y.coor)
-dummy_polygon <- terra::vect(dummy_coordinates, type = "polygon")
+x_coor <- c(1, 5,  10, 8, 3)
+y_coor <- c(15, 20,  27, 30, 29)
+dum_coor <- cbind(x_coor, y_coor)
+dum_poly <- terra::vect(dum_coor, type = "polygon")
 
 # Run and plot the climatch
-climatch_plot(recipient = dummy_polygon, source = species.occurr, climdat = rclim1)
+climatch_plot(recipient = dum_poly, source = spec_occ, climdat = rclim1, xlab = "Lon", ylab = "Lat")
 }

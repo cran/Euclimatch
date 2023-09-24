@@ -1,26 +1,33 @@
 #  Euclimatch
-<p align="right">
-	<img src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/Euclimatch_sticker.jpg?raw=true" width="20%"/>
-</p>
+
+<!-- badges: start -->
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/Euclimatch)](https://cran.r-project.org/package=Euclimatch)
+[![cran checks](https://badges.cranchecks.info/summary/Euclimatch.svg)](https://cran.r-project.org/web/checks/check_results_Euclimatch.html)
+[![Downloads last.mnth](https://cranlogs.r-pkg.org/badges/Euclimatch)](https://cran.r-project.org/package=Euclimatch)
+<!--[![CRAN checks](https://cranchecks.info/badges/worst/Euclimatch)](https://cranchecks.info/pkgs/Euclimatch) -->
+<!-- badges: end -->
 
 ## Introduction
+
+<img align="right"  src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/Euclimatch_sticker.jpg?raw=true" width="20%"/>
+
 The `Euclimatch` package provides the Euclidean “Climatch” algorithm [1] in an R environment to deliver versatility in the use of user-defined historical or projected climate data (e.g., WorldClim [2], MERRAclim [3], Global Climate Models [4]) and geographic location data (e.g., species occurrence records typically based on longitude and latitude, ecoregions, watersheds, global administrative areas), in climate matching.
 
 Climate matching is a method is used in biological risk assessment frameworks, such as horizon scanning and invasive species risk assessment tools (e.g., Freshwater Invasiveness Scoring Kit; FISK [5]), or independent research [6,7,8,9], to estimate non-native species survival in recipient (target) non-native regions, or the survival of species transported in trade pathways among regions.
 
 The `Euclimatch` package also provides functions to assist in climate data extraction and visualizations of climate match data, and offers the use of parallelization to maximize processing speed of larger datasets. To further quicken processing, the `climatch_vec()` function, the engine of the package, which runs the “Climatch” algorithm, was coded in `C++` and integrated with the Rcpp package [10]. This package imports and relies on the `terra` package [11] for working with the spatial data, such as extraction, and `foreach` [12] and `doParallel` [13] for parallel computing.
 
-# Euclimatch Functions
-Function name     |  Description
----     |  ---
+## Euclimatch Functions
+Function name   |  Description
+-   |  ---
 `extract_clim_data()` |  Extracts the climate data of single or multiple locations
 `climatch_vec()`      |  Runs “Climatch” algorithm, provides vector of climatch score (0-10) for each grid cell in the recipient region
 `climatch_sum()`  |  Provides a summary climatch score of the percentage of grid cells within recipient region(s)
-`climatch_plot()`   |  Provides a plot of `climatch_vec()`, using `terra::plot()`, or a `SpatRaster` object that can then be used in a different visualization package e.g., `ggplot2`, `tmap`, `rasterVis`
-`climatch_par()`    |  Runs `climatch_vec()` or `climatch_sum()` in parallel for faster computing
+`climatch_plot()` |  Provides a plot of `climatch_vec()`, using `terra::plot()`, or a `SpatRaster` object that can then be used in a different visualization package e.g., `ggplot2`, `tmap`, `rasterVis`
+`climatch_par()`  |  Runs `climatch_vec()` or `climatch_sum()` in parallel for faster computing
 ---
 
-# Installation
+## Installation
 
 ```
 # Install from CRAN
@@ -33,7 +40,7 @@ library(Euclimatch)
 
 Here, we provide several examples of the use of Euclimatch in climate matching.
 
-We begin the workflow with loading other helpful packages, climate data as a SpatRaster or raster object (e.g., .tif), location data as SpatVector, SpatialPolygonsDataFrame, SpatialPolygons (e.g., .shp), or longitude and latitude points as a dataframe (e.g., .csv) or list of dataframes. Here, we use Freshwater Ecoregions of the World [14], downloaded at [15], for the recipient regions. For our source region, we use the species occurrence records of the Oscar (_Astronotus ocellatus_) drawn from gbif [16]. Select climatic variables were based on [17], though it is important to note other variable sets are also used [6,7,8,9].
+We begin the workflow with loading other helpful packages, climate data as a SpatRaster or raster object (e.g., .tif), location data as SpatVector, SpatialPolygonsDataFrame, SpatialPolygons (e.g., .shp), or longitude and latitude points as a dataframe (e.g., .csv) or list of dataframes. Here, we use Freshwater Ecoregions of the World [14], downloaded at [15], for the recipient regions. For our source region, we use the species occurrence records of the Oscar (*Astronotus ocellatus*) drawn from gbif [16]. Select climatic variables were based on [17], though it is important to note other variable sets are also used [6,7,8,9].
 
 
 ```
@@ -86,7 +93,7 @@ gv_fut <- apply(na.omit(terra::values(CanESM_370_2070, dataframe = T)), 2, var)
 gv_both <- apply(rbind(gv_hist, gv_fut), 2, mean) # Mean variance across two historical and projections
 ```
 
-Here, we can use the `extract_clim_dat()` to extract climate data from points or polygons.
+Here, we can use `extract_clim_dat()` to extract climate data from points or polygons.
 
 ```
 # Extract climate data
@@ -115,8 +122,8 @@ plot(feow[16,], add=T)
 ```
 <p align="center">
 	<img src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/climatch_plot().png?raw=true" width="85%"/>
-	<figcaption>Climate match of Oscar Oscar (_Astronotus ocellatus_) under historical (left) and global climate model CanESM SSP3-7.0 2070 (right) to the Laurentian Great Lakes.</figcaption>
-</p>
+	<figcaption> Figure 1. Climate match of Oscar (*Astronotus ocellatus*) under historical (left) and global climate model CanESM SSP3-7.0 2070 (right) to the Laurentian Great Lakes.</figcaption>
+
 
 If we want to utilize different packages, such as tmap, levelplot, ggplot or rasterVis for visualizations, we can use the `climatch_plot()` function but with the argument and command `provide_raster = TRUE` to return a SpatRaster without the plot.
 
@@ -138,6 +145,7 @@ cmatch_lplot
 	<img src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/levelplot.jpeg?raw=true" width="85%"/>
 	<figcaption>Climate match of Oscar Oscar (_Astronotus ocellatus_) under historical climatic conditions to the Laurentian Great Lakes.</figcaption>
 </p>
+
 
 If global variance can be grabbed from the climate data and a source is provided then `climatch_plot()` can  act as a wrapper for `climate_vec()`, and create the plot/SpatRaster.
 
@@ -178,8 +186,9 @@ feow_spdf_plot
 ```
 <p align="center">
 	<img src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/feow_spdf_plot.png?raw=true" width="85%"/>
-	<figcaption>Climate match of Oscar Oscar (_Astronotus ocellatus_) under historical climatic conditions to the global freshwater ecoregions.</figcaption>
+	<figcaption>Climate match of Oscar (*Astronotus ocellatus*) under historical climatic conditions to the global freshwater ecoregions.</figcaption>
 </p>
+
 
 If there is a need to run hundreds or thousands of climate matches, e.g. for a horizon scanning or screening assessment of many species and depending on the resolution of the climate data, it may be desirable to run the climate matches in parallel across multiple CPUs to quicken the process. Parallel processing is available with the `climatch_par()` function. This function operates like the others and can use either the `climatch_sum()` or `climatch_vec()` functions. The `ncores` argument specifies the number of CPU cores to utilize (default is 1); be careful not to use too many cores otherwise your computer may crash. Typically, a maximum of 1 less than the number of cores in your computer is recommended.
 
@@ -236,6 +245,23 @@ canada_feow_plot
 	<img src="https://github.com/JustinHubbard/R.package.media.JH/blob/main/canada_feow_plot.png?raw=true" width="85%"/>
 	<figcaption> The number of Neotropical freshwater ecoregions with a climate match >71.7% to freeshwater ecoregions of Canada under historical climatic conditions and climate change projection CanESM SSP3-7.0 2070.</figcaption>
 </p>
+
+## How to cite this package
+
+To cite package ‘Euclimatch’ in publications use:
+
+  Hubbard JAG, Drake DAR, Mandrak NE (2023). “Euclimatch: Euclidean Climatch Algorithm in
+  R.” R package version 1.0.0, <https://CRAN.R-project.org/package=Euclimatch>.
+
+A BibTeX entry for LaTeX users is
+
+  @Misc{,
+    title = {Euclimatch: Euclidean Climatch Algorithm in R},
+    author = {Justin A. G. Hubbard and D. Andrew R. Drake and Nicholas E. Mandrak},
+    year = {2023},
+    note = {R package version 1.0.0},
+    url = {https://CRAN.R-project.org/package=Euclimatch},
+  }
 
 
 ### References
