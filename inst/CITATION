@@ -1,7 +1,8 @@
 bibentry(bibtype  = "Misc",
-  title = "Euclimatch: Euclidean Climatch Algorithm",
+  title = "Euclimatch: Euclidean Climatch Algorithm in R",
   author = "Justin A. G. Hubbard, D. Andrew R. Drake, Nicholas E. Mandrak",
   year = "2023",
-  note = "R package version 1.0.1",
+  note = "R package version 1.0.2",
   url   = "https://CRAN.R-project.org/package=Euclimatch",
+  doi   = "10.32614/CRAN.package.Euclimatch"
 )

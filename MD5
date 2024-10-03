@@ -1,13 +1,13 @@
-8eaa3d9c52af94e1b0d772d864d97b77 *DESCRIPTION
+06a0987db83b519293641cdd6f8c6788 *DESCRIPTION
 aae57ded56ad707a1ec62812f380b9c2 *NAMESPACE
 2838a070b1796824241f0443548f3dba *NEWS.md
 04c16cefa92374f72138bb606db6515e *R/RcppExports.R
-008105368156714d24c797878df51e62 *R/climatch_par.R
+6dd70c6d89495b8178bdf3d70d8da27b *R/climatch_par.R
 b36a1d6d67d1b4c46ca5acab8c34d54e *R/climatch_plot.R
 f42072f2823c7163a9b3d4dbf48cf877 *R/climatch_sum.R
 cd59d0ebdac61a3c81b2dd860b3faad5 *R/extract_clim_data.R
-f825851c8e5e15726b536e12cba9b04d *README.md
-f1e5731e492fe5ef9a1bc8495c44f948 *inst/CITATION
+f586e15cc2ef955d3ef334c5c0f1d86c *README.md
+02a4b3679d3282b7d3fd54c02e1e7683 *inst/CITATION
 5490281433dc3de0b9f67dca216091be *man/climatch_par.Rd
 936a32ca2d97d4bfac80a1076321e026 *man/climatch_plot.Rd
 64db62abd60510be07ea2992d31946aa *man/climatch_sum.Rd

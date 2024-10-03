@@ -83,6 +83,6 @@ climatch_par <- function(recipient, source, globvar, biovar = 1:length(globvar),
   }
 
   parallel::stopCluster(nc)  # Stop cluster
-  return(climatch_pairwise)
+  return(as.data.frame(climatch_pairwise))
 }
 

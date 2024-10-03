@@ -1,7 +1,8 @@
 Package: Euclimatch
 Type: Package
 Title: Euclidean Climatch Algorithm
-Version: 1.0.1
+Version: 1.0.2
+Depends: R (>= 3.5.0)
 Authors@R: 
       c(person(c("Justin", "A.", "G."), "Hubbard",
              role = c("aut", "cre"),
@@ -17,16 +18,16 @@ Description: An interface for performing climate matching using the Euclidean "C
 BugReports: https://github.com/JustinHubbard/Euclimatch/issues
 License: GPL (>= 3)
 Encoding: UTF-8
-Imports: Rcpp (>= 1.0.10), foreach, doParallel, RcppParallel, terra,
+Imports: Rcpp (>= 1.0-10), foreach, doParallel, RcppParallel, terra,
         RColorBrewer, grDevices
 LinkingTo: Rcpp
 RoxygenNote: 7.2.3
 NeedsCompilation: yes
-Packaged: 2023-09-24 17:48:31 UTC; justi
+Packaged: 2024-10-03 14:54:25 UTC; justi
 Author: Justin A. G. Hubbard [aut, cre]
     (<https://orcid.org/0000-0003-1510-9546>),
   D. Andrew R. Drake [aut],
   Nicholas E. Mandrak [aut] (<https://orcid.org/0000-0001-8335-9681>)
 Maintainer: Justin A. G. Hubbard <justin.hubbard@mail.utoronto.ca>
 Repository: CRAN
-Date/Publication: 2023-09-24 21:10:10 UTC
+Date/Publication: 2024-10-03 18:00:02 UTC

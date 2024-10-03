@@ -4,6 +4,7 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-last-release/Euclimatch)](https://cran.r-project.org/package=Euclimatch)
 [![cran checks](https://badges.cranchecks.info/summary/Euclimatch.svg)](https://cran.r-project.org/web/checks/check_results_Euclimatch.html)
 [![Downloads last.mnth](https://cranlogs.r-pkg.org/badges/Euclimatch)](https://cran.r-project.org/package=Euclimatch)
+[![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/Euclimatch)](https://cran.r-project.org/package=Euclimatch)
 <!--[![CRAN checks](https://cranchecks.info/badges/worst/Euclimatch)](https://cranchecks.info/pkgs/Euclimatch) -->
 <!-- badges: end -->
 
@@ -19,7 +20,7 @@ The `Euclimatch` package also provides functions to assist in climate data extra
 
 ## Euclimatch Functions
 Function name   |  Description
--   |  ---
+|---   |  -----------|
 `extract_clim_data()` |  Extracts the climate data of single or multiple locations
 `climatch_vec()`      |  Runs “Climatch” algorithm, provides vector of climatch score (0-10) for each grid cell in the recipient region
 `climatch_sum()`  |  Provides a summary climatch score of the percentage of grid cells within recipient region(s)
@@ -28,7 +29,7 @@ Function name   |  Description
 ---
 
 ## Installation
-
+For Windows operating systems a recent verion of Rtools is required to compile the C++ code. See https://cran.r-project.org/bin/windows/Rtools/
 ```
 # Install from CRAN
 install.packages(“Euclimatch”)
@@ -89,8 +90,6 @@ names(CanESM_370_2070) <- c("bioclim1", "bioclim6","bioclim9","bioclim11")
 
 # IMPORTANT # Compute global variance of climate data to use in climate match
 gv_hist <- apply(na.omit(terra::values(hist_clim, dataframe = T)), 2, var) 
-gv_fut <- apply(na.omit(terra::values(CanESM_370_2070, dataframe = T)), 2, var)
-gv_both <- apply(rbind(gv_hist, gv_fut), 2, mean) # Mean variance across two historical and projections
 ```
 
 Here, we can use `extract_clim_dat()` to extract climate data from points or polygons.
@@ -108,7 +107,7 @@ Now we can run our climate matching. The `climatch_vec()` function returns a vec
 # Both recipient and source historical
 climatch_hist <- climatch_vec(recipient = gl_hist, source = ast_oce_hist, globvar = gv_hist)
 # Recipient under climate change and source historical
-climatch_fut <- climatch_vec(recipient = gl_fut, source = ast_oce_hist, globvar = gv_both)
+climatch_fut <- climatch_vec(recipient = gl_fut, source = ast_oce_hist, globvar = gv_hist)
 ```
 
 Plot the climate matches with the `climatch_plot()` function. Provide the original recipient region spatial object and the climate data SpatRaster or raster so the function can first create a SpatRaster of the climatch data.
@@ -151,7 +150,7 @@ If global variance can be grabbed from the climate data and a source is provided
 
 ```
 par(mfrow =c(1,1)) # Change back to 1 row 1 column of plotting
-climatch_plot(recipient = feow[16,], , source = ast_oce_histclimdat = hist_clim)
+climatch_plot(recipient = feow[16,], source = ast_oce_hist, climdat = hist_clim)
 plot(feow[16,], add=T)
 ```
 
@@ -160,7 +159,7 @@ To perform an assessment where climate match scores need to be summarized across
 ```
 # Summarize the climatch score within the Laurentian Great Lakes as percent match >= 6
 climatch_sum(recipient = gl_hist, source = ast_oce_hist, globvar = gv_hist)
-climatch_sum(recipient = gl_fut, source = ast_oce_hist, globvar = gv_both)
+climatch_sum(recipient = gl_fut, source = ast_oce_hist, globvar = gv_hist)
 ```
 
 To determine the climate match across a combination of single or multiple recipient and source regions, we can use the same function but supply a list of data.frames for the regions. Once data are extracted, run the climate match with `climatch_sum()` and assign the values to the SpatVector using ‘$’. ‘tmap’ may give a warning with the SpatVector so we can first convert to a SpatialPolygonsDataFrames with `terra::as()` then plot. Plotting here is slower than the climate matching and will likely take several minutes
@@ -215,8 +214,8 @@ feow_neotropic_fut <- extract_clim_data(climdat = CanESM_370_2070, locations = n
 
 # Run the climate matches 3 ways with historical and climate projections see Hubbard et al.[8] for details on these combinations
 feow_can_match_hist <- climatch_par(recipient = feow_canada_hist, source = feow_neotropic_hist, globvar = gv_hist, ncores = 3, type = "perc", threshold = 6)
-feow_can_match_hist_fut <- climatch_par(recipient = feow_canada_fut, source = feow_neotropic_hist, globvar = gv_both, ncores = 3, type = "perc", threshold = 6)
-feow_can_match_fut_fut <- climatch_par(recipient = feow_canada_fut, source = feow_neotropic_fut, globvar = gv_both, ncores = 3, type = "perc", threshold = 6)
+feow_can_match_hist_fut <- climatch_par(recipient = feow_canada_fut, source = feow_neotropic_hist, globvar = gv_hist, ncores = 3, type = "perc", threshold = 6)
+feow_can_match_fut_fut <- climatch_par(recipient = feow_canada_fut, source = feow_neotropic_fut, globvar = gv_hist, ncores = 3, type = "perc", threshold = 6)
 
 # We can use 'apply' with a simple function to count the number of matches > 71.7% or whatever threshold we decide
 # And assign to our canada_feow SpatVector
@@ -259,7 +258,7 @@ A BibTeX entry for LaTeX users is
     title = {Euclimatch: Euclidean Climatch Algorithm in R},
     author = {Justin A. G. Hubbard and D. Andrew R. Drake and Nicholas E. Mandrak},
     year = {2023},
-    note = {R package version 1.0.0},
+    note = {R package version 1.0.1},
     url = {https://CRAN.R-project.org/package=Euclimatch},
   }
 
