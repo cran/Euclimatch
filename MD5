@@ -1,4 +1,4 @@
-06a0987db83b519293641cdd6f8c6788 *DESCRIPTION
+0ab543e243584b3b527dd55c7a2d3e96 *DESCRIPTION
 aae57ded56ad707a1ec62812f380b9c2 *NAMESPACE
 2838a070b1796824241f0443548f3dba *NEWS.md
 04c16cefa92374f72138bb606db6515e *R/RcppExports.R
@@ -15,3 +15,5 @@ f586e15cc2ef955d3ef334c5c0f1d86c *README.md
 b6f2b87a0b24e13201c68946c71aaf2d *man/extract_clim_data.Rd
 e3437927182d292738fa4666f3dfdc48 *src/RcppExports.cpp
 c234da520aa538394aa85b8fef5a03f8 *src/climatch_vec.cpp
+47485c2c8ad687aa2b4371b2d36caed0 *tests/testthat.R
+38b9710dbdd9b4663e807261d792fa5f *tests/testthat/test-climatch_vec.R
